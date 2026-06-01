@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-base: #0b0f14;
+  --color-surface: #121821;
+  --color-glass: rgba(18, 24, 33, 0.55);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+
+  --color-accent: #2fbf71;        /* green — primary */
+  --color-highlight: #f2c94c;     /* yellow — highlight */
+  --color-tertiary: #21a8a0;      /* teal — tertiary */
+
+  --color-text: #e6edf3;
+  --color-text-muted: #9ba7b4;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-base);
+  color: var(--color-text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.glass {
+  background-color: var(--color-glass);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@keyframes lde-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.node-float {
+  animation: lde-float 6s ease-in-out infinite;
+}
+
+.node-gem {
+  border-radius: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 28px) 0,
+    100% 28px,
+    100% 100%,
+    28px 100%,
+    0 calc(100% - 28px)
+  );
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+}
