@@ -6,11 +6,14 @@ Qwen model served by an oMLX OpenAI-compatible API on port 9000.
 
 ## Prerequisites
 
-- Python 3.11+ and `uv`
-- Node 20+
 - An oMLX server serving the model on port 9000 (OpenAI-compatible API).
 
 ## Setup
+
+### Native (recommended for development)
+
+- Python 3.11+ and `uv`
+- Node 20+
 
 ```bash
 # Backend
@@ -26,6 +29,27 @@ cd frontend && npm install && cd ..
 # Model: start your oMLX server on port 9000 with the Qwen model loaded,
 # then set MODEL_NAME in backend/.env to match the id it reports.
 ```
+
+### Docker
+
+- Docker and Docker Compose
+
+```bash
+# Ensure backend/.env exists (copy from example if needed)
+cp backend/.env.example backend/.env   # adjust MODEL_BASE_URL / MODEL_NAME if needed
+
+# Build and start both services
+docker compose up --build
+
+# Or run in detached mode
+docker compose up --build -d
+```
+
+The frontend is served by nginx on `http://localhost:3000`. The backend runs
+on port 8000 (internal only — proxied through the frontend nginx config).
+Cache data persists in a named Docker volume (`cache`).
+
+To stop: `docker compose down`. To stop and remove the cache volume: `docker compose down -v`.
 
 ## Run
 
